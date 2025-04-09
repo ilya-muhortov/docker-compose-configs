@@ -1,0 +1,16 @@
+
+volumes:
+  jupyter-data:
+    name: jupyter-data
+
+services:
+  jupyter:
+    build:
+      image: "jupyter-custom:latest"
+      context: .
+    container_name: jenkins
+    ports:
+      - 8888:8888
+    volumes:
+      - jupyter-data:/home/jovyan/work
+    command: start-notebook.py --NotebookApp.token='123456789'

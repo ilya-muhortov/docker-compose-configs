@@ -1,0 +1,28 @@
+networks:
+  local-network:
+    external: true
+
+volumes:
+  jenkins-home:
+
+services:
+  jenkins:
+    restart: "always"
+    build:
+      image: "jenkins-custom:latest"
+      context: .
+    image: "jenkins-custom:latest"
+    container_name: "jenkins"
+    privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins-home:/var/jenkins_home
+    networks:
+      - local-network
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
