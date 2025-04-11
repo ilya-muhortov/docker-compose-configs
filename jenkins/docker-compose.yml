@@ -8,10 +8,9 @@ volumes:
 services:
   jenkins:
     restart: "always"
-    build:
-      image: "jenkins-custom:latest"
-      context: .
     image: "jenkins-custom:latest"
+    build:
+      context: .
     container_name: "jenkins"
     privileged: true
     volumes:

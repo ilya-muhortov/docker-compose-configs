@@ -1,0 +1,16 @@
+
+services:
+  maildev:
+    restart: "always"
+    image: maildev/maildev
+    container_name: maildev
+    environment:
+      MAILDEV_WEB_USER: admin
+      MAILDEV_WEB_PASS: p@ssword
+    ports:
+      - 1080:1080
+      - 1025:1025
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"

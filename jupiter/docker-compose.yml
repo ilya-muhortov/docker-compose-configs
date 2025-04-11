@@ -5,8 +5,9 @@ volumes:
 
 services:
   jupyter:
+    restart: "always"
+    image: "jupyter-custom:latest"
     build:
-      image: "jupyter-custom:latest"
       context: .
     container_name: jenkins
     ports:
