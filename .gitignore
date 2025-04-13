@@ -1,0 +1,10 @@
+*.egg-info
+*.pot
+*.py[co]
+*.bat
+*.pyproj
+*.sln
+__pycache__
+.DS_Store
+.idea/*
+.vs/*
