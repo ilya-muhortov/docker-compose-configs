@@ -1,0 +1,17 @@
+
+services:
+  smocker:
+    restart: "always"
+    image: ghcr.io/smocker-dev/smocker
+    container_name: smocker
+    environment:
+      - SMOCKER_PERSISTENCE_DIRECTORY=/mocks
+    volumes:
+      - ./mocks:/mocks
+    ports:
+      - 900:8080
+      - 901:8081
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"

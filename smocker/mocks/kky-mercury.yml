@@ -1,0 +1,177 @@
+- request:
+    method: POST
+    path: /kkt-mercury
+    body:
+      matcher: ShouldContainSubstring
+      value: '"command": "OpenSession"'
+  dynamic_response:
+    engine: go_template
+    script: >
+      headers:
+        Content-Type: [application/json]
+      body: >
+        {
+          "result": 0,
+          "description": "Описание ошибки",
+          "sessionKey": "{{ randAlpha 10 }}",
+          "protocolVer": "1.1"
+        }
+
+- request:
+    method: POST
+    path: /kkt-mercury
+    body:
+      matcher: ShouldContainSubstring
+      value: '"command": "CloseSession"'
+  response:
+    headers:
+      Content-Type: application/json
+    body: |-
+      {
+        "result": 0,
+        "description": "Описание ошибки"
+      }
+
+- request:
+    method: POST
+    path: /kkt-mercury
+    body:
+      matcher: ShouldContainSubstring
+      value: '"command": "OpenCheck"'
+  dynamic_response:
+    engine: go_template
+    script: >
+      headers:
+        Content-Type: [application/json]
+      body: >
+        {
+          "result": 0,
+          "description": "Описание ошибки",
+          "shiftNum": 125,
+          "checkNum": {{ randNumeric 10 }}
+        }
+
+- request:
+    method: POST
+    path: /kkt-mercury
+    body:
+      matcher: ShouldContainSubstring
+      value: '"command": "CloseCheck"'
+  response:
+    headers:
+      Content-Type: application/json
+    body: |-
+      {
+        "result": 0,
+        "description": "Описание ошибки",
+        "shiftNum": 125,
+        "checkNum": 18,
+        "fiscalDocNum": 1173,
+        "fiscalSign": "1189046352",
+        "dateTime": "2021-10-01T09:16:21",
+        "checkUrl": "www.nalog.gov.ru",
+        "changeSum": 4000
+      }
+
+- request:
+    method: POST
+    path: /kkt-mercury
+    body:
+      matcher: ShouldContainSubstring
+      value: '"command": "AddGoods"'
+  response:
+    headers:
+      Content-Type: application/json
+    body: |-
+      {
+        "result": 0,
+        "description": "Описание ошибки",
+        "shiftNum": 235,
+        "checkNum": 18,
+        "goodsNum": 2,
+        "taxSum": 0,
+        "goodsSum": 3134,
+        "checkSum": 5392
+      }
+
+- request:
+    method: POST
+    path: /kkt-mercury
+    body:
+      matcher: ShouldContainSubstring
+      value: '"command": "ResetCheck"'
+  response:
+    headers:
+      Content-Type: application/json
+    body: |-
+      {
+        "result": 0,
+        "description": "Описание ошибки"
+      }
+
+- request:
+    method: POST
+    path: /kkt-mercury
+    body:
+      matcher: ShouldContainSubstring
+      value: '"command": "GetCheckStatus"'
+  response:
+    headers:
+      Content-Type: application/json
+    body: |-
+      {
+        "result": 0,
+        "description": "Успешно завершено",
+        "statusCode": 3,
+        "checkInfo": {
+          "shiftNum": 125,
+          "checkNum": 18,
+          "fiscalDocNum": 1173,
+          "fiscalSign": "1189046352",
+          "dateTime": "2021-10-01T09:15:43",
+          "checkUrl": "www.nalog.gov.ru",
+          "checkSum": 6000,
+          "changeSum": 4000
+        }
+      }
+
+- request:
+    method: POST
+    path: /kkt-mercury
+    body:
+      matcher: ShouldContainSubstring
+      value: '"command": "GetCommonInfo"'
+  response:
+    headers:
+      Content-Type: application/json
+    body: |-
+      {
+        "result": 0,
+        "description": "Описание ошибки",
+        "model": "Название модели ККТ",
+        "kktNum": "123456789012",
+        "fnNum": "9908176526",
+        "ffdFnVer": "1.0.5",
+        "ffdKktVer": "1.0",
+        "ffdTotalVer": "1.0.5",
+        "mac": "45:F2:0D:73:37:00",
+        "programVer": "3.1",
+        "programDate": "2021-09-04T10:23:36",
+        "protocolVer": "2.17",
+        "dateTime": "2021-10-01T09:15:43",
+        "crc": "C5AD",
+        "cpl": [
+          21,
+          10
+        ],
+        "dpl": 240,
+        "maxGoodsSum": 999999999,
+        "maxCheckSum": 999999999,
+        "maxGoodsQty": 99,
+        "wifi": {
+          "status": 0,
+          "mac": "C4:5B:BE:CB:EE:FF",
+          "ver": "1.02",
+          "build": "Jun 16 2020 10:09:14"
+        }
+      }
